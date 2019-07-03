@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd /root
+
 set -o xtrace
 
 VER=${VER:-1.5.8}
@@ -77,4 +79,9 @@ gzip $DOCDIR/changelog.Debian
 )
 
 dpkg-deb --build inst
-mv inst.deb $SRCDIR.deb
+
+CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | sed 's/.*=//')
+ARCH=$(dpkg --print-architecture)
+
+mkdir -p DEB
+mv inst.deb DEB/$SRCDIR-$CODENAME-$ARCH.deb
