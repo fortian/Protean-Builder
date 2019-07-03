@@ -33,7 +33,7 @@ stop:
 	docker stop $(CTR)
 
 # Startup helper rules
-mk-cont:
+mk-cont: image
 	docker container ls -a -f name=$(CTR) | grep $(CTR) || make install-cont
 
 install-cont:	
