@@ -80,7 +80,7 @@ gzip $DOCDIR/changelog.Debian
 
 dpkg-deb --build inst
 
-CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | sed 's/.*=//')
+CODENAME=$(cat /etc/lsb-release | grep DISTRIB_CODENAME | sed 's/.*=//')
 ARCH=$(dpkg --print-architecture)
 
 mkdir -p DEB
